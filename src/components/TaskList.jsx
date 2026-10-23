@@ -1,19 +1,32 @@
 function TaskList({ tasks, onToggleTaskCompletion }) {
   return (
-    <div>
+    <ul className="task-list">
       {tasks.map((task) => (
-        <div key={task.id}>
-          <h3>{task.title}</h3>
-          <p>{task.description}</p>
-          <input
-            type="checkbox"
-            checked={task.completed}
-            onChange={() => onToggleTaskCompletion(task.id)}
-          />
-          <p>Completed: {task.completed ? "Yes" : "No"}</p>
-        </div>
+        <li
+          className={`task-card${task.completed ? " is-completed" : ""}`}
+          key={task.id}
+        >
+          <div className="task-copy">
+            <h3>{task.title}</h3>
+            {task.description && <p>{task.description}</p>}
+            <span className="task-status">
+              {task.completed ? "Completed" : "In progress"}
+            </span>
+          </div>
+          <label className="completion-control">
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => onToggleTaskCompletion(task.id)}
+              aria-label={`Mark "${task.title}" as ${
+                task.completed ? "incomplete" : "complete"
+              }`}
+            />
+            <span className="checkbox-visual" aria-hidden="true" />
+          </label>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
