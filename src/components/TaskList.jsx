@@ -1,4 +1,4 @@
-function TaskList({ tasks, toggleTaskCompletion, setTasks }) {
+function TaskList({ tasks, onToggleTaskCompletion }) {
   return (
     <div>
       {tasks.map((task) => (
@@ -8,7 +8,7 @@ function TaskList({ tasks, toggleTaskCompletion, setTasks }) {
           <input
             type="checkbox"
             checked={task.completed}
-            onChange={() => setTasks(toggleTaskCompletion(tasks, task.id))}
+            onChange={() => onToggleTaskCompletion(task.id)}
           />
           <p>Completed: {task.completed ? "Yes" : "No"}</p>
         </div>

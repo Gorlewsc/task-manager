@@ -31,6 +31,10 @@ function App() {
     },
   ]);
 
+  function handleToggleTaskCompletion(taskId) {
+    setTasks((currentTasks) => toggleTaskCompletion(currentTasks, taskId));
+  }
+
   return (
     <>
       <Header
@@ -39,8 +43,7 @@ function App() {
       />
       <TaskList
         tasks={tasks}
-        toggleTaskCompletion={toggleTaskCompletion}
-        setTasks={setTasks}
+        onToggleTaskCompletion={handleToggleTaskCompletion}
       />
     </>
   );
